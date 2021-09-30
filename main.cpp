@@ -1,517 +1,299 @@
-// TASK 1
+// Task 1
 
 #include <iostream>
-#define ENDL std::endl
-#define CW std::cout
-#define CR std::cin
 
 int main() {
-    double a, b, c;
-    CR >> a >> b >> c;
-    CW << (a < b ? (b < c ? "YES" : "NO" ) : "NO");
-}
+    int maxSize = 100, arr[maxSize], size;
 
-// TASK 2
-
-
-
-#include <iostream>
-#include <cmath>
-#define ENDL std::endl
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    double a, b, c;
-    CR >> a >> b >> c;
-    if (a <= b && b <= c){
-        CW << a * 2 << ENDL
-           << b * 2 << ENDL
-           << c * 2;
+    for (int i = 0; i < 100; ++i) {
+        std::cin >> arr[i];
+        if (arr[i] == -1) {
+            break;
+        }
+        size++;
     }
-    else {
-        CW << std::abs(a) << ENDL
-           << std::abs(b) << ENDL
-           << std::abs(c);
+
+    std::cout << size << std::endl;
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
     }
 }
 
-// TASK 3
-
+//Task 2
 
 #include <iostream>
 #include <cmath>
-#define CW std::cout
-#define CR std::cin
 
 int main() {
-    double a, b, c;
-    CR >> a >> b >> c;
-    if (a == 0) {
-        return 1;
+    int maxSize = 100, size=0;
+    double arr[maxSize];
+
+    for (int i = 0; i < 100; ++i) {
+        std::cin >> arr[i];
+        if (arr[i] == 0) {
+            break;
+        }
+        size++;
     }
 
-    double d = (b * b) - (4 * a * c);
-    if (d > 0.0) {
-        CW << ((-b + std::sqrt(d)) / (2 * a)) + 0 << " "
-           << ((-b - std::sqrt(d)) / (2 * a)) + 0;
-    }
-    else if (d == 0) {
-        CW << (-b / (2 * a)) + 0.0;
-    }
-    else {
-        CW << "no solution";
+    std::cout << size << std::endl;
+    for (int i = size - 1; i >= 0; --i) {
+        std::cout << std::sqrt(arr[i]) << std::endl;
     }
 }
+
+ Task 3
+
+
+//Task 3
+
+#include <iostream>
+#define INT_MAX 2147483647
+
+int main() {
+    int maxSize = 1000, size=0;
+    int arr[maxSize], min = INT_MAX;
+    std::cin >> size;
+
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+        min = min > arr[i] ? arr[i] : min;
+    }
+
+    std::cout << min;
+}
+
 
 // Task 4
 
 
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
+#define INT_MAX 2147483647
 
 int main() {
-    double a, b, c;
-    CR >> a >> b >> c;
+    int maxSize = 101, size=0;
+    int arr[maxSize], minIndex = maxSize - 1;
+    arr[maxSize - 1] = INT_MAX;
 
-    CW << (a < b ? (a < c ? a : c) : (b < c ? b : c)) << " "
-       << (a > b ? (a > c ? a : c) : (b > c ? b : c));
+    std::cin >> size;
+
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+        minIndex = arr[minIndex] > arr[i] ? i : minIndex;
+    }
+
+    std::cout << minIndex;
 }
+
 
 // Task 5
 
 
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
+#define INT_MIN -2147483647
 
 int main() {
-    double a, b, c;
-    CR >> a >> b >> c;
+    int maxSize = 101, size=0;
+    int arr[maxSize], max = INT_MIN;
 
-    CW << (a + b > c && b + c > a && c + a > b ? "YES" : "NO");
+    std::cin >> size;
+
+    // Input the array items and finding the max number
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+        max = max < arr[i] ? arr[i] : max;
+    }
+
+    int counter = 0;
+    for (int i = 0; i < size; ++i) {
+        if (max == arr[i]) {
+            counter++;
+        }
+    }
+
+    std::cout << counter;
 }
+
 
 // Task 6
 
-
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
 
 int main() {
-    int year;
-    CR >> year;
+    int size, counter = 0;
+    char line[100];
 
-    CW << ( ( (year % 4 == 0) && (year % 100 != 0) ) || (year % 400 == 0) ? 366 : 365);
+    std::cin >> size >> line;
+
+    for (int i = 0; i < size; ++i) {
+        char symbol = line[i];
+
+        if (symbol == 'A') {
+            counter++;
+        }
+    }
+
+    std::cout << counter;
 }
 
 // Task 7
 
-
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
-
 int main() {
-    int day, mouth, year;
-    CR >> day >> mouth >> year;
+    int size, unique_size=0;
+    int symbol_count_pair[1001][2];
+    unsigned char line[1001];
 
-    // Check if input is correct
-    if (mouth <= 0 || mouth > 12 || day <= 0) {
-        CW << "no";
-        return 1;
+    std::cin >> size >> line;
+
+    // input and storing
+    for (int i = 0; i < size; ++i) {
+        int symbol_id = (int)line[i];
+
+        // find the same symbol in the array
+        int same_symbol_index = -1;
+        for (int j = 0; j < i; ++j) {
+            if (symbol_count_pair[j][0] == symbol_id) {
+                same_symbol_index = j;
+                symbol_count_pair[same_symbol_index][1]++;
+                break;
+            }
+        }
+
+        // when it is a new symbol, create new pair in the array
+        if (same_symbol_index == -1) {
+            symbol_count_pair[unique_size][0] = symbol_id;
+            symbol_count_pair[unique_size++][1] = 1;
+        }
     }
 
-    // Check if the day is correct
-    if (mouth == 2) { // if it is a february
-        bool isYearLeap = ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
-        CW << ( (isYearLeap && day <= 29) || (!isYearLeap && day <= 28) ? "yes" : "no" );
+    // sorting
+    for (int i = 0; i < unique_size; ++i) {
+        for (int j = i; j < unique_size; ++j) {
+            if (symbol_count_pair[i][0] > symbol_count_pair[j][0]) {
+                std::swap(symbol_count_pair[i][0], symbol_count_pair[j][0]);
+                std::swap(symbol_count_pair[i][1], symbol_count_pair[j][1]);
+            }
+        }
     }
-    else if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11) { // if in the mouth 30 days
-        CW << (day <= 30 ? "yes" : "no");
-    }
-    else { // if in the mouth 31 days
-        CW << (day <= 31 ? "yes" : "no");
+
+    // output
+    std::cout << unique_size << std::endl;
+    for (int i = 0; i < unique_size; ++i) {
+        std::cout << (char)symbol_count_pair[i][0] << " " << symbol_count_pair[i][1] << std::endl;
     }
 }
 
 // Task 8
 
-
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
 
 int main() {
-    int year;
-    CR >> year;
+    int n, arr[1000];
+    std::cin >> n;
 
-    // код года = (6 + последние две цифры года + последние две цифры года / 4) % 7
-    int yearCode = (6 + (year % 100) + (year % 100) / 4) % 7;
+    for (int i = 0; i < n; ++i) {
+        std::cin >> arr[i];
+    }
 
-    int mouthCode = 1;
-
-    for (int i = 0; i < 31; ++i) {
-        // день недели = (день + код месяца + код года) % 7
-        int dayOfWeek = (i + mouthCode + yearCode) % 7;
-        if (dayOfWeek == 1) {
-            CW << i;
-            return 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i; j < n; ++j) {
+            if (arr[i] > arr[j]) {
+                std::swap(arr[i], arr[j]);
+            }
         }
     }
+
+    for (int i = 0; i < n; ++i) {
+        std::cout << arr[i] << " ";
+    }
 }
+
 
 // Task 9
 
-
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
 
-int main(){
-    int day, mouth, year;
-    CR >> day >> mouth >> year;
-    day ++;
-
-    if (mouth == 2) {
-        bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-
-        if (isLeap && day == 30 || !isLeap && day == 29) {
-            day = 1;
-            mouth++;
-        }
-    }
-    else if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11) {
-        if (day == 31) {
-            day = 1;
-            mouth++;
-        }
-    }
-    else {
-        if (day == 32) {
-            day = 1;
-            mouth++;
-        }
-    }
-
-    if (mouth == 13) {
-        mouth = 1;
-        year++;
-    }
-
-    CW << day << " " << mouth << " " << year;
-}
-
-
-// Task 10
-
-
-#include <iostream>
-#define CW std::cout
-#define CR std::cin
-
-int main(){
+int main() {
     int n;
-    CR >> n;
-    int value = 1;
+    int times[1000][3];
+
+    std::cin >> n;
+    for (int i = 0; i < n; ++i) {
+        std::cin >> times[i][0] >> times[i][1] >> times[i][2];
+    }
+
 
     for (int i = 0; i < n; ++i) {
-        value *= 2;
+        for (int j = i; j < n; ++j) {
+            if (times[i][0] > times[j][0] ||
+                (times[i][1] > times[j][1] && times[i][0] == times[j][0]) ||
+                (times[i][2] > times[j][2] && times[i][1] == times[j][1] && times[i][0] == times[j][0])) {
+
+                std::swap(times[i][0], times[j][0]);
+                std::swap(times[i][1], times[j][1]);
+                std::swap(times[i][2], times[j][2]);
+            }
+        }
     }
 
+    for (int i = 0; i < n; ++i) {
+        std::cout << times[i][0] << " " << times[i][1] << " " << times[i][2] << std::endl;
+    }
 
-    CW << value;
+}
+
+// Task 10
+#include <iostream>
+
+int main(){
+   int n;
+   std::cin >> n;
+
+    for (int i = 2; i <= n / 2; ++i) {
+        if (n % i == 0) {
+            std::cout << "NO";
+            return 0;
+        }
+    }
+
+    std::cout << "YES";
 }
 
 // Task 11
 
 #include <iostream>
-#define CW std::cout
-#define CR std::cin
 
-int main() {
-    int n;
-    CR >> n;
-
-    int result = 1;
-    for (int i = 1; i < n + 1; ++i) {
-        result *= i;
+bool is_prime(int n, int start_with=2) {
+    for (int i = start_with; i <= n / 2; ++i) {
+        if (n % i == 0) {
+            return false;
+        }
     }
-
-    CW << result;
-
+    return true;
 }
-
-
-
-// Task 12
-#include <iostream>
-#define CW std::cout
-#define CR std::cin
 
 int main(){
-    int n;
-    CR >> n;
+   int n, primes[10000], size=0;
+   std::cin >> n;
 
-    double value = 1;
-    for (double i = 1; i < n + 1; ++i) {
-        value *= 1 + (1 / (i * i));
-    }
-
-    CW << value;
-}
-
-// Task 14
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-double recursion(int iteration, int max) {
-    return std::sqrt(2 + (iteration < max ? recursion(++iteration, max) : 0));
-}
-
-int main() {
-    int n;
-    CR >> n;
-    CW << recursion(1, n);
-}
-
-
-
-// Task 15
-
-#include <iostream>
-#define CW std::cout
-#define CR std::cin
-
-int main(){
-    double a, result = 0;
-    int c;
-
-    CR >> a >> c;
-
-    for (int i = 0; i < c; ++i) {
-        result += a;
-    }
-
-    CW << result;
-}
-
-// Task 16
-
-#include <iostream>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    // (a + 1 - 1)(a + 2 -1) (a + 3 -1)
-    double a;
-    int n;
-    CR >> a >> n;
-
-    double result = 1;
-    for (int i = 1; i <= n; ++i) {
-        result *= (a + i - 1);
-    }
-
-    CW << result;
-}
-
-// Task 17
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    double a, sum = 0;
-    int n;
-    CR >> a >> n;
-
-    for (int i = 0; i <= n; ++i) {
-        double expression = a;
-        for (int j = 1; j <= i; ++j) {
-            expression *= (a + j);
+    for (int i = 2; i <= n; ++i) {
+        // check if i is divided by one of saved primes
+        bool should_continue = false;
+        if (size != 0) {
+            for (int j = 0; j < size; ++j) {
+                if (i % primes[j] == 0) {
+                    should_continue = true;
+                }
+            }
         }
-        sum += std::pow(expression, -1);
-    }
-    CW << sum;
-}
 
-// Task 18
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    double a, value = 0;
-    int n;
-    CR >> a >> n;
-
-    for (int i = 0; i <= n; i++) {
-        int power = i == 0 ? 1 : 2 * i;
-        value += 1.0 / (std::pow(a, power));
-    }
-
-    CW << value;
-}
-
-
-
-// Task 19
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-long double factorial(int n) {
-    long double result = 1;
-    for (int i = 1; i <= n; ++i) {
-        result *= i;
-    }
-    return result;
-}
-
-int main() {
-   double x;
-   CR >> x;
-   long double result = x;
-
-    for (int i = 3, operationNumber = 1; i <= 13; i+=2, operationNumber++) {
-        if (operationNumber % 2 == 0){ // +
-            result += std::pow(x, i) / factorial(i);
-        }
-        else { // -
-            result -= std::pow(x, i) / factorial(i) + 0;
+        if (!should_continue && is_prime(i, size == 0 ? 2 : primes[size-1])) {
+            primes[size++] = i;
         }
     }
 
-    CW << result;
-}
-
-
-// Task 20
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-double recursion(double x, double a, int iteration, int max) {
-    return std::pow(a + (iteration < max ? recursion(x, a, ++iteration, max) : x), 2);
-}
-
-int main() {
-    double x, a;
-    int n;
-    CR >> x >> a >> n;
-    CW << recursion(x, a,1, n) + a;
-
-}
-
-
-// Task 21
-
-#include <iostream>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-   double x, numerator = 1, denominator = 1;
-   CR >> x;
-
-    for (int i = 2; i <= 64; i*=2) {
-        numerator *= x - i;
-        denominator *= x - (i - 1);
+    for (int i = 0; i < size; ++i) {
+        std::cout << primes[i] << " ";
     }
-
-    CW << numerator / denominator;
 }
-
-
-
-// Task 22
-
-#include <iostream>
-#define CW std::cout
-
-double innerDivision(int iteration, int max) {
-    return iteration < max ? iteration + (1 / innerDivision(iteration + 2, max)) : max;
-}
-
-int main() {
-    CW << 1 / innerDivision(1, 103);
-}
-
-
-
-// Task 23
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-double innerDivision(double x, int iteration, int max) {
-    return std::pow(x, 2) + (iteration < max ?
-    (iteration / innerDivision(x,  iteration * 2, max)) : 0);
-}
-
-int main() {
-    double x;
-    CR >> x;
-
-    CW << x / innerDivision(x, 2, 257);
-}
-
-
-
-// Task 24
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    double i, sum = 0;
-    CR >> i;
-
-    for (int j = 1; j < 51; ++j) {
-        sum += 1 / std::pow(j, 3);
-    }
-
-    CW << sum;
-}
-
-
-
-// Task 25
-
-
-#include <iostream>
-#include <cmath>
-#define CW std::cout
-#define CR std::cin
-
-int main() {
-    double result = 0;
-    for (int i = 1; i <= 10; ++i) {
-        double a;
-        CR >> a;
-
-        result += pow(a, i);
-    }
-    CW << result;
-}
-
-
-
