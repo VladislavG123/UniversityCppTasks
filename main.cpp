@@ -421,51 +421,103 @@
 //    }
 //
 //
-////}
+//}
+//
+
+
+
+
+//// Task 18
+//
+//#include <iostream>
+//
+//using namespace std;
 //
 //
+//int main() {
+//    bool map[10][10];
+//    int maxSize = 0;
 //
+//    // input
+//    for (int i = 0; i < 10; ++i) {
+//        for (int j = 0; j < 10; ++j) {
+//            cin >> map[i][j];
+//        }
+//    }
+//
+//    // horizontal
+//    for (int i = 0; i < 10; ++i) {
+//        int len = 0;
+//        for (int j = 0; j < 10; ++j) {
+//            if (map[i][j]) {
+//                if (len > maxSize) {
+//                    maxSize = len;
+//                }
+//                len = 0;
+//                continue;
+//            }
+//            len++;
+//        }
+//        if (len > maxSize) {
+//            maxSize = len;
+//        }
+//    }
+//
+//
+//    // vertical
+//    for (int i = 0; i < 10; ++i) {
+//
+//        int len = 0;
+//        for (int j = 0; j < 10; ++j) {
+//            if (map[j][i]) {
+//
+//                if (len > maxSize) {
+//                    maxSize = len;
+//                }
+//                len = 0;
+//                continue;
+//            }
+//            len++;
+//        }
+//        if (len > maxSize) {
+//            maxSize = len;
+//        }
+//    }
+//
+//    cout << maxSize;
+//}
+
+
+
+//// Task 19
 //#include<iostream>
 //using namespace std;
-///*
-//7
-//1011111
-//2010001
-//3010101
-//4010101
-//5011101
-//6000001
-//7111111
-//g
-//*/
+//
 //int main() {
 //    int n;
 //    cin >> n;
 //    int map[51][51]{};
-//    int dir = 0, i = 1, j = 1, k = 1;
+//    int dir = 0, i = 1, j = 1;
 //    while (dir < n) {
-//        map[i][j] = k;
+//        map[i][j] = 1;
 //        switch (dir % 4) {
-//            case 0:
+//            case 1:
 //                if (i == n || map[i + 2][j] != 0) {
 //                    dir++;
-//                    k = 1;
 //                    continue;
 //                }
 //                i++;
 //                break;
-//            case 1:
+//            case 0:
 //                if (j == n || map[i][j + 2] != 0) {
 //                    dir++;
-//                    k = 1;
 //                    continue;
 //                }
 //                j++;
 //                break;
-//            case 2:
+//            case 3:
 //                if (i - 1 == 0 || map[i - 2][j] != 0) {
 //                    dir++;
-//                    k = 1;
 //                    continue;
 //                }
 //                i--;
@@ -473,91 +525,17 @@
 //            default:
 //                if (j - 1 == 0 || map[i][j - 2] != 0) {
 //                    dir++;
-//                    k = 1;
 //                    continue;
 //                }
 //                j--;
 //        }
-//        k++;
 //    }
 //
-//    for (int i = 0; i <= n+1; i++) {
-//        for (int j = 0; j <= n+1; j++) {
+//    for (int i = 1; i <= n; i++) {
+//        for (int j = 1; j <= n; j++) {
 //            cout << map[i][j] << " ";
-//            if (map[i][j] < 10) {
-//                cout << " ";
-//            }
 //        }
 //        cout << endl;
 //    }
 //    return 0;
 //}
-
-
-
-//// Task 18
-
-#include <iostream>
-
-using namespace std;
-
-int* getArr(int arr[10]) {
-    return arr;
-}
-
-
-int main() {
-    int oneArr[10];
-    int* newArr = getArr(oneArr);
-
-    bool map[10][10];
-    int maxSize = 0;
-
-    // input
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            cin >> map[i][j];
-        }
-    }
-
-    // horizontal
-    for (int i = 0; i < 10; ++i) {
-        int len = 0;
-        for (int j = 0; j < 10; ++j) {
-            if (map[i][j]) {
-                if (len > maxSize) {
-                    maxSize = len;
-                }
-                len = 0;
-                continue;
-            }
-            len++;
-        }
-        if (len > maxSize) {
-            maxSize = len;
-        }
-    }
-
-
-    // vertical
-    for (int i = 0; i < 10; ++i) {
-
-        int len = 0;
-        for (int j = 0; j < 10; ++j) {
-            if (map[j][i]) {
-
-                if (len > maxSize) {
-                    maxSize = len;
-                }
-                len = 0;
-                continue;
-            }
-            len++;
-        }
-        if (len > maxSize) {
-            maxSize = len;
-        }
-    }
-
-    cout << maxSize;
-}
