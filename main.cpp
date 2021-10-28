@@ -1,237 +1,426 @@
 //// Task 1
-//
 //#include "iostream"
 //using namespace std;
 //
-//int min(int a, int b, int c, int d) {
-//    int first = (a < b ? a : b);
-//    int second = (c < d ? c : d);
-//    return  first < second ? first : second;
+//void swap2(unsigned int &a, unsigned int &b) {
+//    unsigned int buffer = a;
+//    a = b;
+//    b = buffer;
 //}
 //
 //int main() {
-//    int a, b, c, d;
-//    cin >> a >> b >> c >> d;
-//    cout << min (a, b, c, d);
+//    unsigned int a,b;
+//    cin >> a >> b;
+//    swap2(a,b);
+//
+//    cout << a  << " " << b;
 //}
-
-
+//
+//
 //// Task 2
-//#include "iostream"
-//using namespace std;
-//
-//double power(double num, int power) {
-//    for (int i = 0; i < power - 1; ++i) {
-//        num *= num;
-//    }
-//    return num;
-//}
-//
-//int main() {
-//    double a, b;
-//    cin >> a >> b;
-//    cout << power (a, b);
-//}
-
-
-//// Task 3
 //
 //#include "iostream"
 //using namespace std;
 //
-//double myXor(bool x, bool y) {
-//    return !(x && y) && (x || y);
-//}
-//
-//int main() {
-//    int a, b;
-//    cin >> a >> b;
-//    cout << myXor (a, b);
-//}
-
-//// Task 4
-//#include "iostream"
-//using namespace std;
-//
-//double election(bool x, bool y, bool z) {
-//    return x + y + z >= 2;
-//}
-//
-//int main() {
-//    int a, b, c;
-//    cin >> a >> b >> c;
-//    cout << election (a, b, c);
-//}
-
-//// Task 5
-//
-//#include "iostream"
-//using namespace std;
-//
-//char getSign(int a, int b) {
-//    return a > b ? '>' : (a < b ? '<' : '=');
-//}
-//
-//int main() {
-//    int a, b, c;
-//    cin >> a >> b;
-//    cout << getSign (a, b);
-//}
-
-//// Task 6
-//
-//#include "iostream"
-//using namespace std;
-//
-//int countPositives(const int *a, int n) {
-//    int sum = 0;
+//int* inputArray(int n) {
+//    int* result = new int[n];
 //    for (int i = 0; i < n; ++i) {
-//        if (a[i] > 0) {
-//            sum++;
-//        }
+//        cin >> result[i];
 //    }
-//    return sum;
-//}
 //
-//char getSign(int *a, int *b, int n) {
-//    return countPositives(a, n) > countPositives(b, n) ? '>' : (countPositives(a, n) < countPositives(b, n) ? '<' : '=');
+//    return result;
 //}
 //
 //int main() {
 //    int n;
 //    cin >> n;
-//    int a[100], b[100];
+//    int* array = inputArray(n);
 //
 //    for (int i = 0; i < n; ++i) {
-//        cin >> a[i];
+//        cout << array[i];
 //    }
-//
-//
-//    for (int i = 0; i < n; ++i) {
-//        cin >> b[i];
-//    }
-//
-//    switch (getSign (a, b, n)) {
-//        case '>':
-//            cout << "Number of positives in the first array is greater";
-//            break;
-//        case '<':
-//            cout << "Number of positives in the second array is greater";
-//            break;
-//        default:
-//            cout << "Numbers are equal";
-//            break;
-//    }
-//
 //}
-
 //
-//// Task 7
-//
+////// Task 3
 //#include "iostream"
+//#include <stdio.h>
 //using namespace std;
 //
 //
-//int countPositives(int *a, int n) {
-//    int sum = 0;
-//    for (int i = 0; i < n; ++i) {
-//        if (a[i] > 0) {
-//            sum++;
+//int main() {
+//    int rowCount;
+//    cin >> rowCount;
+//
+//    int* counts = new int[rowCount] {};
+//    char** results = new char*[rowCount];
+//
+//    for (int i = 0; i < rowCount; ++i) {
+//        char letter, *word = new char[100];
+//        cin >> letter >> word;
+//        counts[i] = 0;
+//        for (int j = 0; j < 100; ++j) {
+//            if (word[j] == '\0') break;
+//            if (word[j] == letter) counts[i]++;
 //        }
+//        results[i] = new char[100];
+//        sprintf(results[i], "%d %c in %s", counts[i], letter, word);
+//    }
+//
+//    for (int i = 0; i < rowCount; ++i) {
+//        cout << results[i] << endl;
+//    }
+//}
+//
+/////// Task 4
+//#include "iostream"
+//#include "cctype"
+//using namespace std;
+//
+//void deleteLetter(char*& word, int letterIndex) {
+//    word[letterIndex] = '\0';
+//    int index = letterIndex;
+//    while (word[index + 1] != '\0') {
+//        swap(word[index], word[index + 1]);
+//        index++;
+//    }
+//}
+//
+//void getClearWord(char*& word) {
+//    int index = 0;
+//    while (word[index] != '\0') {
+//        if(!isalpha(word[index])) {
+//            deleteLetter(word, index--);
+//        }
+//        index++;
+//    }
+//}
+//
+//int main() {
+//    char* word = new char[100];
+//    cin >> word;
+//
+//    getClearWord(word);
+//    cout << word << endl;
+//}
+//
+//
+////// Task 6
+//#include <iostream>
+//using namespace std;
+//
+//
+//void printArray(int *array, int size) {
+//    for (int i = 0; i < size; ++i) {
+//        cout << array[i] << " ";
+//    }
+//}
+//
+//int main() {
+//    int n;
+//    cin >> n;
+//
+//    int *odds = new int[n], oddsSize = 0;
+//    int *evens = new int[n], evensSize = 0;
+//
+//    for (int i = 0; i < n; ++i) {
+//        int number;
+//        cin >> number;
+//
+//        if((i + 1) % 2 == 0) {
+//            odds[oddsSize++] = number;
+//        }
+//        else {
+//            evens[evensSize++] = number;
+//        }
+//    }
+//
+//    printArray(evens, evensSize);
+//    printArray(odds, oddsSize);
+//}
+//
+////// Task 7
+//#include <iostream>
+//using namespace std;
+//
+//int getSumBetween(int& begin, int& end){
+//    int sum = 0;
+//    for (int* i = &begin; i <= &end; ++i) {
+//        sum += *i;
 //    }
 //    return sum;
 //}
 //
-//int getSign(int **a, int n, int m) {
-//    int max = 0, index = 0;
+//int main() {
+//    int n, firstZeroIndex = -1, lastZeroIndex = -1;
+//    cin >> n;
+//
+//    int *array = new int[n];
 //    for (int i = 0; i < n; ++i) {
-//        int count = countPositives(a[i], m);
-//        if (count == max) {
-//            index = 0;
-//        } else if (count > max) {
-//            index = i + 1;
-//            max = count;
+//        cin >> array[i];
+//        if (array[i] == 0) {
+//            if (firstZeroIndex == -1) {
+//                firstZeroIndex = i;
+//            } else if(lastZeroIndex == -1) {
+//                lastZeroIndex = i;
+//            }
 //        }
 //    }
-//    return index;
+//
+//    cout << getSumBetween(array[firstZeroIndex], array[lastZeroIndex]);
+//}
+//
+//
+////// Task 8
+//#include <iostream>
+//using namespace std;
+//
+//int sumOfPositive(int& begin, int&end) {
+//    int sum = 0;
+//
+//    for (int* it = &begin; it < &end; ++it) {
+//        if (*it > 0) {
+//            sum += *it;
+//        }
+//    }
+//
+//    return sum;
+//}
+//
+//int main(){
+//    int n;
+//    cin >> n;
+//    int max_index = 0;
+//    int* arr = new int[n];
+//    for (int i = 0; i < n; ++i) {
+//        cin >> arr[i];
+//        if(arr[i] >= arr[max_index]) {
+//            max_index = i;
+//        }
+//    }
+//
+//    cout << sumOfPositive(arr[0], arr[max_index]);
+//}
+//
+//
+////// Task 9
+//#include <iostream>
+//
+//using namespace std;
+//
+//int countEvens(int& begin, int& end) {
+//    int count = 0;
+//
+//    for (int* it = &begin + 1; it < &end; ++it) {
+//        if (*it % 2 == 0) {
+//            count ++;
+//        }
+//    }
+//
+//    return count;
+//}
+//
+//int main(){
+//    int n;
+//    cin >> n;
+//    int max_index = 0, min_index = 0;
+//    int* arr = new int[n];
+//    for (int i = 0; i < n; ++i) {
+//        cin >> arr[i];
+//        if(arr[i] >= arr[max_index]) {
+//            max_index = i;
+//        }
+//        if(arr[i] < arr[min_index]) {
+//            min_index = i;
+//        }
+//    }
+//
+//    if(min_index > max_index) {
+//        swap(max_index, min_index);
+//    }
+//
+//    cout << countEvens(arr[min_index], arr[max_index]);
+//}
+//
+////// Task 10
+//#include <iostream>
+//
+//using namespace std;
+//
+//int compareString(char* line1, char* line2, int index=0) {
+//    if(line1[index] == '\0' && line2[index] == '\0') return 0;
+//    else if(line1[index] == '\0') return -1;
+//    else if(line2[index] == '\0') return 1;
+//    else if(line1[index] == line2[index]) return compareString(line1, line2, index + 1);
+//    else if((int)line1[index] > (int)line2[index]) return 1;
+//    else return -1;
 //}
 //
 //int main() {
-//    int n, m;
-//    cin >> n >> m;
-//    int **a = new int*[n];
-//    for(int i = 0; i < n; ++i) {
-//        a[i] = new int[m];
-//    }
-//
-//    for (int i = 0; i < n; ++i) {
-//
-//        for (int j = 0; j < m; ++j) {
-//            cin >> a[i][j];
-//        }
-//    }
-//
-//    int result = getSign(a, n, m);
-//    switch (result) {
-//        case 0:
-//            cout << "Numbers are equal";
-//            break;
-//        default:
-//            cout << result;
-//            break;
-//    }
+//    char* line1 = new char[100],
+//        * line2 = new char[100];
+//    cin >> line1 >> line2;
+//    cout << (compareString(line1, line2) == 0 ? "YES" : "NO");
 //
 //}
-
-////// Task 8
+//
+//
+////// Task 11
 //#include "iostream"
 //
 //using namespace std;
 //
-//int getMaxLine(int **arr, int n, int m) {
-//    int max = -99999999, maxIndex = -1;
+//int main() {
+//    char* line = new char[100];
+//    cin >> line;
 //
-//    for (int i = 0; i < n; ++i) {
-//        int sum = 0;
-//        for (int j = 0; j < m; ++j) {
-//            sum += arr[i][j];
-//        }
+//    int size = -1;
+//    while(line[++size] != '\0') {}
 //
-//        if (sum > max) {
-//            max = sum;
-//            maxIndex = i + 1;
-//        } else if (sum == max) {
-//            maxIndex = -1;
+//    for (int i = 0; i < size / 2; ++i) {
+//        if (line[i] != line[size - i - 1]) {
+//            cout << "NO";
+//            return 0;
 //        }
 //    }
 //
-//    return maxIndex;
+//    cout << "YES";
+//}
+//
+//
+////// Task 12
+//#include <iostream>
+//using namespace std;
+//
+//int main() {
+//    char* crypted = new char[100];
+//    int k;
+//    cin >> crypted >> k;
+//
+//    int size = -1;
+//    while(crypted[++size] != '\0') {}
+//
+//    for (int i = 0; i < size; ++i) {
+//        int cr = (((int) crypted[i]) - k);
+//        cout << (char)(cr < 65 ? cr + 26 : cr);
+//    }
+//}
+//
+//
+////// Task 13
+//#include <iostream>
+//#include <stdlib.h>
+//
+//using namespace std;
+//
+//int main() {
+//    char* ip = new char[100];
+//    cin >> ip;
+//
+//    int size = 0;
+//    char* ipPart = new char[3];
+//    int ipPartIndex = 0;
+//    int pintCount = 0;
+//
+//    while(true) {
+//        if(ip[size] == '.' || ip[size] == '\0') {
+//            int part = atoi(ipPart);
+//            if(part > 255 || part < 0) {
+//                cout << 0;
+//                return 0;
+//            }
+//            ipPart = new char[part];
+//
+//            if (ip[size] == '\0') {
+//                break;
+//            }
+//
+//            pintCount++;
+//        }
+//        else {
+//            ipPart[ipPartIndex++] = ip[size];
+//        }
+//        size++;
+//    }
+//
+//    if (pintCount != 3) {
+//        cout << 0;
+//    }
+//    else {
+//        cout << 1;
+//    }
+//}
+//
+//
+////// Task 14
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//int main() {
+//    char* dirr = new char[100];
+//    int steps;
+//    int x = 0, y = 0;
+//
+//    while(cin >> dirr >> steps) {
+//        if (!strcmp(dirr, "North")){
+//            y += steps;
+//        }
+//        else if(!strcmp(dirr, "South")){
+//            y -= steps;
+//        }
+//        else if(!strcmp(dirr, "East")){
+//            x += steps;
+//        }
+//        else {
+//            x -= steps;
+//        }
+//    }
+//
+//    cout << x << " " << y;
+//}
+//
+//
+////// Task 15
+//#include <iostream>
+//using namespace std;
+//
+//unsigned sumDigits(int n) { // make a sum
+//    unsigned sum = 0;
+//    while (n != 0) {
+//        sum += n % 10;
+//        n /= 10;
+//    }
+//    return sum;
+//}
+//
+//bool isLuckyTicket(int number) { // check if it is lucky ticket
+//    int firstHalf = number / 10000;
+//    int secondHalf = number % 10000;
+//
+//    return sumDigits(firstHalf) == sumDigits(secondHalf);
+//}
+//
+//unsigned countLuckyTickets(int n, int m) { // count total number of lucky tickets
+//    int* sum = new int[10000];
+//    for (int e = 0; e < 10000; ++e ) {
+//        sum[e] = sumDigits(e);
+//    }
+//
+//    unsigned counter = 0;
+//    for (int i = n; i <= m; i++) {
+//        int firstPart = i / 10000;
+//        int secondPart = i % 10000;
+//        if (sum[firstPart] == sum[secondPart] )
+//            counter++;
+//    }
+//
+//    return counter;
 //}
 //
 //int main() {
-//    int n, m;
-//    cin >> n >> m;
-//    int **a = new int*[m * n];
-//    for(int i = 0; i < n; ++i) {
-//        a[i] = new int[m];
-//    }
+//    int first, second;
+//    cin >> first >> second;
 //
-//    for (int i = 0; i < n; ++i) {
-//        for (int j = 0; j < m; ++j) {
-//            cin >> a[i][j];
-//        }
-//    }
-//
-//    int result = getMaxLine(a, n, m);
-//    switch (result) {
-//        case -1:
-//            cout << "No series of equal elements";
-//            break;
-//        default:
-//            cout << "Longest series is in the string " << result;
-//            break;
-//    }
+//    cout << countLuckyTickets(first, second) << endl;
+//    return 0;
 //}
-
-
-//// Task 9
