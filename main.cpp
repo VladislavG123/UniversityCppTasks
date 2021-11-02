@@ -1,271 +1,8 @@
 //// Task 1
-//#include "iostream"
-//using namespace std;
-//
-//void swap2(unsigned int &a, unsigned int &b) {
-//    unsigned int buffer = a;
-//    a = b;
-//    b = buffer;
-//}
-//
-//int main() {
-//    unsigned int a,b;
-//    cin >> a >> b;
-//    swap2(a,b);
-//
-//    cout << a  << " " << b;
-//}
-//
-//
-//// Task 2
 //
 //#include "iostream"
-//using namespace std;
-//
-//int* inputArray(int n) {
-//    int* result = new int[n];
-//    for (int i = 0; i < n; ++i) {
-//        cin >> result[i];
-//    }
-//
-//    return result;
-//}
-//
-//int main() {
-//    int n;
-//    cin >> n;
-//    int* array = inputArray(n);
-//
-//    for (int i = 0; i < n; ++i) {
-//        cout << array[i];
-//    }
-//}
-//
-////// Task 3
-//#include "iostream"
-//#include <stdio.h>
-//using namespace std;
-//
-//
-//int main() {
-//    int rowCount;
-//    cin >> rowCount;
-//
-//    int* counts = new int[rowCount] {};
-//    char** results = new char*[rowCount];
-//
-//    for (int i = 0; i < rowCount; ++i) {
-//        char letter, *word = new char[100];
-//        cin >> letter >> word;
-//        counts[i] = 0;
-//        for (int j = 0; j < 100; ++j) {
-//            if (word[j] == '\0') break;
-//            if (word[j] == letter) counts[i]++;
-//        }
-//        results[i] = new char[100];
-//        sprintf(results[i], "%d %c in %s", counts[i], letter, word);
-//    }
-//
-//    for (int i = 0; i < rowCount; ++i) {
-//        cout << results[i] << endl;
-//    }
-//}
-//
-/////// Task 4
-//#include "iostream"
-//#include "cctype"
-//using namespace std;
-//
-//void deleteLetter(char*& word, int letterIndex) {
-//    word[letterIndex] = '\0';
-//    int index = letterIndex;
-//    while (word[index + 1] != '\0') {
-//        swap(word[index], word[index + 1]);
-//        index++;
-//    }
-//}
-//
-//void getClearWord(char*& word) {
-//    int index = 0;
-//    while (word[index] != '\0') {
-//        if(!isalpha(word[index])) {
-//            deleteLetter(word, index--);
-//        }
-//        index++;
-//    }
-//}
-//
-//int main() {
-//    char* word = new char[100];
-//    cin >> word;
-//
-//    getClearWord(word);
-//    cout << word << endl;
-//}
-//
-//
-////// Task 6
-//#include <iostream>
-//using namespace std;
-//
-//
-//void printArray(int *array, int size) {
-//    for (int i = 0; i < size; ++i) {
-//        cout << array[i] << " ";
-//    }
-//}
-//
-//int main() {
-//    int n;
-//    cin >> n;
-//
-//    int *odds = new int[n], oddsSize = 0;
-//    int *evens = new int[n], evensSize = 0;
-//
-//    for (int i = 0; i < n; ++i) {
-//        int number;
-//        cin >> number;
-//
-//        if((i + 1) % 2 == 0) {
-//            odds[oddsSize++] = number;
-//        }
-//        else {
-//            evens[evensSize++] = number;
-//        }
-//    }
-//
-//    printArray(evens, evensSize);
-//    printArray(odds, oddsSize);
-//}
-//
-////// Task 7
-//#include <iostream>
-//using namespace std;
-//
-//int getSumBetween(int& begin, int& end){
-//    int sum = 0;
-//    for (int* i = &begin; i <= &end; ++i) {
-//        sum += *i;
-//    }
-//    return sum;
-//}
-//
-//int main() {
-//    int n, firstZeroIndex = -1, lastZeroIndex = -1;
-//    cin >> n;
-//
-//    int *array = new int[n];
-//    for (int i = 0; i < n; ++i) {
-//        cin >> array[i];
-//        if (array[i] == 0) {
-//            if (firstZeroIndex == -1) {
-//                firstZeroIndex = i;
-//            } else if(lastZeroIndex == -1) {
-//                lastZeroIndex = i;
-//            }
-//        }
-//    }
-//
-//    cout << getSumBetween(array[firstZeroIndex], array[lastZeroIndex]);
-//}
-//
-//
-////// Task 8
-//#include <iostream>
-//using namespace std;
-//
-//int sumOfPositive(int& begin, int&end) {
-//    int sum = 0;
-//
-//    for (int* it = &begin; it < &end; ++it) {
-//        if (*it > 0) {
-//            sum += *it;
-//        }
-//    }
-//
-//    return sum;
-//}
-//
-//int main(){
-//    int n;
-//    cin >> n;
-//    int max_index = 0;
-//    int* arr = new int[n];
-//    for (int i = 0; i < n; ++i) {
-//        cin >> arr[i];
-//        if(arr[i] >= arr[max_index]) {
-//            max_index = i;
-//        }
-//    }
-//
-//    cout << sumOfPositive(arr[0], arr[max_index]);
-//}
-//
-//
-////// Task 9
-//#include <iostream>
-//
-//using namespace std;
-//
-//int countEvens(int& begin, int& end) {
-//    int count = 0;
-//
-//    for (int* it = &begin + 1; it < &end; ++it) {
-//        if (*it % 2 == 0) {
-//            count ++;
-//        }
-//    }
-//
-//    return count;
-//}
-//
-//int main(){
-//    int n;
-//    cin >> n;
-//    int max_index = 0, min_index = 0;
-//    int* arr = new int[n];
-//    for (int i = 0; i < n; ++i) {
-//        cin >> arr[i];
-//        if(arr[i] >= arr[max_index]) {
-//            max_index = i;
-//        }
-//        if(arr[i] < arr[min_index]) {
-//            min_index = i;
-//        }
-//    }
-//
-//    if(min_index > max_index) {
-//        swap(max_index, min_index);
-//    }
-//
-//    cout << countEvens(arr[min_index], arr[max_index]);
-//}
-//
-////// Task 10
-//#include <iostream>
-//
-//using namespace std;
-//
-//int compareString(char* line1, char* line2, int index=0) {
-//    if(line1[index] == '\0' && line2[index] == '\0') return 0;
-//    else if(line1[index] == '\0') return -1;
-//    else if(line2[index] == '\0') return 1;
-//    else if(line1[index] == line2[index]) return compareString(line1, line2, index + 1);
-//    else if((int)line1[index] > (int)line2[index]) return 1;
-//    else return -1;
-//}
-//
-//int main() {
-//    char* line1 = new char[100],
-//        * line2 = new char[100];
-//    cin >> line1 >> line2;
-//    cout << (compareString(line1, line2) == 0 ? "YES" : "NO");
-//
-//}
-//
-//
-////// Task 11
-//#include "iostream"
+//#include "cstring"
+//#include <cctype>
 //
 //using namespace std;
 //
@@ -273,154 +10,521 @@
 //    char* line = new char[100];
 //    cin >> line;
 //
-//    int size = -1;
-//    while(line[++size] != '\0') {}
-//
-//    for (int i = 0; i < size / 2; ++i) {
-//        if (line[i] != line[size - i - 1]) {
-//            cout << "NO";
-//            return 0;
-//        }
+//    for (int i = 0; i < strlen(line); i++) {
+//        line[i] = (char)tolower(line[i]);
 //    }
 //
-//    cout << "YES";
-//}
+//    char* it = strstr(line, "aitu");
 //
-//
-////// Task 12
-//#include <iostream>
-//using namespace std;
-//
-//int main() {
-//    char* crypted = new char[100];
-//    int k;
-//    cin >> crypted >> k;
-//
-//    int size = -1;
-//    while(crypted[++size] != '\0') {}
-//
-//    for (int i = 0; i < size; ++i) {
-//        int cr = (((int) crypted[i]) - k);
-//        cout << (char)(cr < 65 ? cr + 26 : cr);
-//    }
-//}
-//
-//
-////// Task 13
-//#include <iostream>
-//#include <stdlib.h>
-//
-//using namespace std;
-//
-//int main() {
-//    char* ip = new char[100];
-//    cin >> ip;
-//
-//    int size = 0;
-//    char* ipPart = new char[3];
-//    int ipPartIndex = 0;
-//    int pintCount = 0;
-//
-//    while(true) {
-//        if(ip[size] == '.' || ip[size] == '\0') {
-//            int part = atoi(ipPart);
-//            if(part > 255 || part < 0) {
-//                cout << 0;
-//                return 0;
-//            }
-//            ipPart = new char[part];
-//
-//            if (ip[size] == '\0') {
-//                break;
-//            }
-//
-//            pintCount++;
-//        }
-//        else {
-//            ipPart[ipPartIndex++] = ip[size];
-//        }
-//        size++;
-//    }
-//
-//    if (pintCount != 3) {
-//        cout << 0;
+//    if (it == NULL) {
+//        cout << "NO";
 //    }
 //    else {
-//        cout << 1;
+//        cout << "YES";
+//    }
+//}
+
+//// Task 2
+//
+//#include "iostream"
+//#include "cstring"
+//
+//using namespace std;
+//
+//void replace(char *source,char *&dest) {
+//    for (int i = 0; i < strlen(source); i++) {
+//        dest[i] = source[i];
+//        if (source[i] == '!') {
+//            dest[i] = '.';
+//        }
 //    }
 //}
 //
+//int main() {
+//    char *input = new char[100];
+//    char *output = new char[100];
 //
-////// Task 14
+//    cin.getline(input, 100, '\n');
+//
+//    replace(input,output);
+//
+//    cout << output;
+//}
+
+//// Task 3
+// strtok
+//
+//#include "iostream"
+//#include "cstring"
+//
+//using namespace std;
+//
+//char* beautifyNumber(char* number) {
+//    unsigned long numberSize = strlen(number);
+//    char* result = new char[numberSize + (numberSize / 3)];
+//
+//    int firstPartCount = numberSize % 3 == 0 ? 3 : numberSize % 3;
+//
+//    for (int i = 0; i < firstPartCount; i++) {
+//        result[i] = number[i];
+//    }
+//    result[firstPartCount] = ' ';
+//
+//    int spaceCount = 1;
+//    for (int i = firstPartCount; i < numberSize; i++) {
+//        if ((i - firstPartCount) % 3 == 0 && (i - firstPartCount) != 0) {
+//            result[spaceCount++ + i] = ' ';
+//        }
+//        result[spaceCount + i] = number[i];
+//    }
+//
+//    return result;
+//}
+//
+//int main() {
+//    char *number = new char[100];
+//    cin >> number;
+//
+//    cout << beautifyNumber(number) << endl;
+//}
+
+
+//// Task 4
+//
+//#include <iostream>
+//#include <cstring>
+//#include <cctype>
+//
+//using namespace std;
+//
+//template<class Key, class Value>
+//struct Pair {
+//    Key key;
+//    Value value;
+//
+//    Pair() {}
+//
+//    Pair(Key key, Value value) {
+//        this->key = key;
+//        this->value = value;
+//    }
+//};
+//
+//template<class Key, class Value>
+//struct Dictionary {
+//    int size;
+//    int bufferedSize;
+//    Value defaultValue;
+//    Pair<Key, Value> *pairs;
+//
+//    Dictionary() {
+//        size = 0;
+//        bufferedSize = 100;
+//        pairs = new Pair<Key, Value>[bufferedSize];
+//        // TODO: add size when it is required
+//    }
+//
+//    Value& get(Key requestKey) {
+//        int index = findIndex(requestKey);
+//
+//        if(index == -1) {
+//            index = size++;
+//            pairs[index] = Pair<Key, Value>(requestKey, defaultValue);
+//        }
+//
+//        return pairs[index].value;
+//    }
+//
+//
+//    Key max() {
+//        int maxIndex = 0;
+//        for (int i = 0; i < size; i++) {
+//            if (pairs[i].value > pairs[maxIndex].value) {
+//                maxIndex = i;
+//            }
+//        }
+//        return pairs[maxIndex].key;
+//    }
+//
+//private:
+//    int findIndex(Key requestKey) {
+//        for (int i = 0; i < size; i++) {
+//            if(pairs[i].key == requestKey){
+//                return i;
+//            }
+//        }
+//
+//        return -1;
+//    }
+//};
+//
+//int main() {
+//    char* line = new char[100];
+//    cin.getline(line, 100);
+//
+//    int i = 0;
+//    while (line[i] != '\0') {
+//        line[i] = (char)toupper(line[i]);
+//        i++;
+//    }
+//
+//    Dictionary<char*, int>* dictionary = new Dictionary<char*, int>;
+//
+//    dictionary->defaultValue = -1;
+//
+//    char* pch = strtok(line, " ");
+//
+//    while (pch != NULL)
+//    {
+//        dictionary->get(pch)++;
+//        pch = strtok (NULL, " ");
+//    }
+//
+//    cout << dictionary->max();
+//}
+
+
+
+//// Task 5
+//
+//#include <iostream>
+//#include <cstring>
+//#include <cctype>
+//
+//using namespace std;
+//
+//int main() {
+//
+//    char* line = new char[100];
+//    cin.getline(line, 100);
+//
+//    int size = 0;
+//    char** words = new char*[100];
+//
+//    char* pch = strtok(line, " ");
+//    while (pch != NULL)
+//    {
+//        bool hasCopy = false;
+//        for (int i = 0; i < size; ++i) {
+//            if (strcmp(pch, words[i]) == 0) {
+//                hasCopy = true;
+//                break;
+//            }
+//        }
+//
+//        if (!hasCopy) {
+//            words[size] = new char[100];
+//            words[size++] = pch;
+//        }
+//
+//        pch = strtok (NULL, " ");
+//    }
+//
+//    for (int i = 0; i < size; ++i) {
+//        cout << words[i] << " ";
+//    }
+//
+//}
+
+
+//// Task 6
+//
+//#include <iostream>
+//#include <cstring>
+//#include <cctype>
+//
+//using namespace std;
+//
+//char* beautifyNumber(char* number) {
+//    unsigned long numberSize = strlen(number);
+//    char* result = new char[numberSize + (numberSize / 3)];
+//
+//    int firstPartCount = numberSize % 3 == 0 ? 3 : numberSize % 3;
+//
+//    for (int i = 0; i < firstPartCount; i++) {
+//        result[i] = number[i];
+//    }
+//    result[firstPartCount] = ' ';
+//
+//    int spaceCount = 1;
+//    for (int i = firstPartCount; i < numberSize; i++) {
+//        if ((i - firstPartCount) % 3 == 0 && (i - firstPartCount) != 0) {
+//            result[spaceCount++ + i] = ' ';
+//        }
+//        result[spaceCount + i] = number[i];
+//    }
+//
+//    return result;
+//}
+//
+//char* getMax(char*& first, char*& second) {
+//    if (strlen(first) != strlen(second)) {
+//        return strlen(first) > strlen(second) ? first : second;
+//    }
+//
+//    for (int i = 0; i < strlen(first); i++) {
+//        if((int)first[i] > (int)second[i]) {
+//            return first;
+//        }
+//        else if((int)first[i] < (int)second[i]) {
+//            return second;
+//        }
+//    }
+//
+//    return first;
+//}
+//
+//char* appendCharToCharArray(char* array, char a)
+//{
+//    unsigned long len = strlen(array);
+//
+//    char* ret = new char[len+2];
+//
+//    strcpy(ret, array);
+//    ret[len] = a;
+//    ret[len+1] = '\0';
+//
+//    return ret;
+//}
+//
+//int main() {
+//    char* line = new char[100];
+//    cin.getline(line, 100);
+//
+//    int size = 0;
+//    char** nums = new char*[100];
+//    nums[0] = new char[100];
+//
+//    for (int i = 0; i < strlen(line); ++i) {
+//        bool isDigit = isdigit(line[i]);
+//        while (isdigit(line[i])) {
+//            nums[size] = appendCharToCharArray(nums[size], line[i++]);
+//        }
+//
+//        if (isDigit) {
+//            nums[++size] = new char[100];
+//        }
+//    }
+//
+//    char* max = nums[0];
+//    for (int i = 1; i < size; ++i) {
+//        max = getMax(max, nums[i]);
+//    }
+//
+//    cout << beautifyNumber(max);
+//}
+
+//// Task 7
+//
+//#include "iostream"
+//#include "cstring"
+//
+//using namespace std;
+//
+//
+//char* getMax(char* first, char* second) {
+//    if (strlen(first) != strlen(second)) {
+//        return strlen(first) > strlen(second) ? first : second;
+//    }
+//
+//    for (int i = 0; i < strlen(first); i++) {
+//        if((int)first[i] > (int)second[i]) {
+//            return first;
+//        }
+//        else if((int)first[i] < (int)second[i]) {
+//            return second;
+//        }
+//    }
+//
+//    return first;
+//}
+//
+//int main() {
+//    char* first = new char[100];
+//    char* second = new char[100];
+//    char* third = new char[100];
+//
+//    cin >> first >> second >> third;
+//
+//    cout << getMax(getMax(first, second), third);
+//
+//}
+
+
+//// Task 8
+//
+//#include <iostream>
+//#include <cstring>
+//
+//using namespace std;
+//
+//int sumDigitChar(char a, char b) {
+//    return ((int)b - 48) + ((int)a - 48);
+//}
+//
+//void summarize(char* first, char* second, int*& summed, int& size) {
+//    size = strlen(first) > strlen(second) ? strlen(first) : strlen(second);
+//    for (int i = 0; i < size; ++i) {
+//        int indexA = strlen(first) - i - 1;
+//        char a = indexA >= 0 ? first[indexA] : '0';
+//
+//        int indexB = strlen(second) - i - 1;
+//        char b = indexB >= 0 ? second[indexB] : '0';
+//
+//        int digit = sumDigitChar(a, b);
+//
+//        summed[i] += digit;
+//        summed[i + 1] = 0;
+//
+//        if (summed[i] >= 10) {
+//            summed[i + 1] += 1;
+//            summed[i] -= 10;
+//            if (i == size - 1) {
+//                size++;
+//                break;
+//            }
+//        }
+//    }
+//}
+//
+//int main() {
+//    char* first = new char[1000] {};
+//    char* second = new char[1000] {};
+//
+//    int* summed = new int[1001];
+//    int size = 0;
+//
+//    cin >> first >> second;
+//
+//    summarize(first, second, summed, size);
+//
+//    for (int i = size - 1; i >= 0; --i) {
+//        cout << summed[i];
+//    }
+//}
+
+
+//// Task 9
+//
+//#include <iostream>
+//#include <cstring>
+//
+//using namespace std;
+//
+//unsigned int sumOfEveryK(char* number, int k, int start) {
+//    unsigned int sum = 0;
+//    for (int i = start; i < strlen(number); i += k) {
+//        sum += (int)number[i] - 48;
+//    }
+//    return sum;
+//}
+//
+//
+//bool dividesTo11(char* number) {
+//    long result = sumOfEveryK(number, 2, 0) - sumOfEveryK(number, 2, 1);
+//
+//    return result == 0 || (result > 0 ? result % 11 == 0 : -result % 11 == 0);
+//}
+//
+//int main() {
+//    char* number = new char[1000];
+//
+//    cin >> number;
+//    cout << (dividesTo11(number) ? "YES" : "NO");
+//}
+
+//// Task 10
+//
 //#include <iostream>
 //#include <cstring>
 //using namespace std;
 //
 //int main() {
-//    char* dirr = new char[100];
-//    int steps;
-//    int x = 0, y = 0;
+//    char arrow1[6] = ">>-->";
+//    char arrow2[6] = "<--<<";
 //
-//    while(cin >> dirr >> steps) {
-//        if (!strcmp(dirr, "North")){
-//            y += steps;
+//    char* line = new char[1000];
+//    cin >> line;
+//
+//    int arrowCounter = 0;
+//    for (int i = 0; i < strlen(line); ++i) {
+//        if(line[i] == arrow1[0]) {
+//            if(i + 5 >= strlen(line)) break;
+//            bool isArrow = true;
+//            for (int j = 1; j < 5; ++j) {
+//                if (line[i + j] != arrow1[j]) isArrow = false;
+//            }
+//            arrowCounter += isArrow;
 //        }
-//        else if(!strcmp(dirr, "South")){
-//            y -= steps;
-//        }
-//        else if(!strcmp(dirr, "East")){
-//            x += steps;
-//        }
-//        else {
-//            x -= steps;
+//
+//        if(line[i] == arrow2[0]) {
+//            if(i + 5 >= strlen(line)) break;
+//            bool isArrow = true;
+//            for (int j = 1; j < 5; ++j) {
+//                if (line[i + j] != arrow2[j]) isArrow = false;
+//            }
+//            arrowCounter += isArrow;
 //        }
 //    }
 //
-//    cout << x << " " << y;
+//    cout << arrowCounter;
+//
 //}
-//
-//
-////// Task 15
+
+
+////// Task 11
 //#include <iostream>
+//
 //using namespace std;
 //
-//unsigned sumDigits(int n) { // make a sum
-//    unsigned sum = 0;
-//    while (n != 0) {
-//        sum += n % 10;
-//        n /= 10;
+//int main() {
+//    int row, col;
+//    cin >> row >> col;
+//
+//    int det = row % 2 == 0;
+//
+//    for (int i = 0; i < row; ++i) {
+//        int colDet = det % 2 == 0;
+//        for (int j = 0; j < col; ++j) {
+//            if(colDet++ % 2 == 0) {
+//                cout << "X";
+//            } else {
+//                cout << ".";
+//            }
+//        }
+//        cout << endl;
+//        det++;
 //    }
-//    return sum;
 //}
+
+////// Task 12
+//#include <iostream>
 //
-//bool isLuckyTicket(int number) { // check if it is lucky ticket
-//    int firstHalf = number / 10000;
-//    int secondHalf = number % 10000;
-//
-//    return sumDigits(firstHalf) == sumDigits(secondHalf);
-//}
-//
-//unsigned countLuckyTickets(int n, int m) { // count total number of lucky tickets
-//    int* sum = new int[10000];
-//    for (int e = 0; e < 10000; ++e ) {
-//        sum[e] = sumDigits(e);
-//    }
-//
-//    unsigned counter = 0;
-//    for (int i = n; i <= m; i++) {
-//        int firstPart = i / 10000;
-//        int secondPart = i % 10000;
-//        if (sum[firstPart] == sum[secondPart] )
-//            counter++;
-//    }
-//
-//    return counter;
-//}
+//using namespace std;
 //
 //int main() {
-//    int first, second;
-//    cin >> first >> second;
+//    char symb;
+//    int totalSum = 0, size = 0;
+//    int det = 0;
+//    while(cin.get(symb)) {
+//        if(symb == '#'){
+//            break;
+//        }
+//        else if(isalpha(symb)){
+//            totalSum++;
+//            det++;
+//        }
+//        else if(det != 0){
+//            size++;
+//            det = 0;
+//        }
+//    }
 //
-//    cout << countLuckyTickets(first, second) << endl;
-//    return 0;
+//    if(det != 0) {
+//        size++;
+//    }
+//
+//    cout.precision(10);
+//    cout << totalSum / (size * 1.0);
 //}
+
